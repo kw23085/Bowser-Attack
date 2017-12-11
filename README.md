@@ -4,7 +4,7 @@ Bowser has returned again!!! While Mario and Luigi was throwing the biggest part
 
 ![](./pictures/bowserscreenshot.png)
 
-Player 1(Mario) and 2(Luigi) will play at the same time. Bowser will move around the on the screen and randomly shoots bouncing fire ballz becasue he is mad. Try to avoid Bowsers ballz as long as you can and survive the attack!
+Player 1(Mario) and 2(Luigi) will play at the same time. Bowser will move around on the screen and randomly shoots bouncing fire ballz to hurt Mario and Luigi becasue he is mad. Try to avoid Bowsers ballz as long as you can and survive the attack!
 
 Items will appear randomly on the map. Move your character over it to get the effect of the item.
 
