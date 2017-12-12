@@ -13,23 +13,30 @@ function startMovingBoss() {
 
     // animate to move the boss around
 function moveBoss(boss) {
-     boss.animate({
-         top: Math.floor(Math.random() * (window.innerHeight - 150)),
-         left: Math.floor(Math.random() * (window.innerWidth - 150)),
-     }, 2000, function() {
-         moveBoss(boss)
+    boss.animate({
+        top: Math.floor(Math.random() * (window.innerHeight - 150)),
+        left: Math.floor(Math.random() * (window.innerWidth - 150)),
+    }, 2000, function() {
+        moveBoss(boss)
 })
 }
 
-   // append boss div to body
-   $body.append($newBoss)
-   moveBoss($newBoss)
+    // append boss div to body
+    $body.append($newBoss)
+    moveBoss($newBoss)
 }
 
 
 // fireball effect
 function enableFireballs() {
     $('body').on('mouseenter', '.fireball', function() {
+        console.log("Ouch")
+    })
+}
+
+// boss effect
+function enableBossEffect() {
+    $('body').on('mouseenter', '.boss', function() {
         console.log("Ouch")
     })
 }
@@ -49,9 +56,29 @@ $('body').on('mouseenter', '.star', function() {
 })
 
 // generate fireball
-function shootFireBalls() {
+function shootFireBall() {
     var $newFireBall = $('<div>')
-    $newFireBalls.addClass('fireball')
+    $newFireBall.addClass('fireball')
+
+// make fireball appear at where the boss is at
+    var $bowser = $('.boss')
+    var bowserY = $bowser.offset().top + ($bowser.height() / 2)
+    var bowserX = $bowser.offset().left + ($bowser.width() / 2)
+    $newFireBall.css({
+        top: bowserY,
+        left: bowserX,
+    })
+
+// make the fireball move randomly
+    setInterval(function() {
+        var xdir = -1
+        $newFireBall.css({
+            top: "+=5px",
+            left: "-=5px" ,
+        })
+
+    }, 100)
+    $body.append($newFireBall)
 }
 
 // generate star at random location
@@ -68,7 +95,24 @@ function generateStar() {
     })
 
     $body.append($newStar)
-}
     
+// remove star after 10 sec after its generated
+     setTimeout(function() {
+         $newStar.remove();
+     }, 10000);
+ }
 
+ // generate star every 30 sec
+ setInterval(function() {
+    generateStar()
+}, 30000);
+
+// generate fireball every 3 sec
+setInterval(function() {
+    shootFireBall()
+}, 3000);
+
+// activate functions at the begining of the game
 enableFireballs()
+startMovingBoss()
+enableBossEffect()
