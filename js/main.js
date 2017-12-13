@@ -11,7 +11,7 @@ function startMovingBoss() {
         left: randomLeft,
     })
 
-    // animate to move the boss around
+// animate to move the boss around
 function moveBoss(boss) {
     boss.animate({
         top: Math.floor(Math.random() * (window.innerHeight - 150)),
@@ -20,7 +20,6 @@ function moveBoss(boss) {
         moveBoss(boss)
 })
 }
-
     // append boss div to body
     $body.append($newBoss)
     moveBoss($newBoss)
@@ -55,10 +54,30 @@ $('body').on('mouseenter', '.star', function() {
     $(this).remove()
 })
 
+// decides if the fireball should increase or decrease to or left
+function randomDirection() {
+    if(Math.round(Math.random())) {
+        return 1
+    } else {
+        return -1
+    }
+}
+
+// generates a speed in a given direction
+function randomVelocity() {
+    return {
+        top: randomDirection() * Math.round(Math.random() * 20),
+        left: randomDirection() * Math.round(Math.random() * 20)
+    }
+}
+
 // generate fireball
 function shootFireBall() {
+    var velocity = randomVelocity()
     var $newFireBall = $('<div>')
     $newFireBall.addClass('fireball')
+    $newFireBall.attr('data-velocity-top', velocity.top)
+    $newFireBall.attr('data-velocity-left', velocity.left)
 
 // make fireball appear at where the boss is at
     var $bowser = $('.boss')
@@ -71,13 +90,23 @@ function shootFireBall() {
 
 // make the fireball move randomly
     setInterval(function() {
-        var xdir = -1
-        $newFireBall.css({
-            top: "+=5px",
-            left: "-=5px" ,
-        })
 
-    }, 100)
+// flip fireball direction
+        if($newFireBall.offset().top <= 0 || ($newFireBall.offset().top >= window.innerHeight - $newFireBall.height())) {
+            $newFireBall.data('velocity-top', $newFireBall.data('velocity-top') * -1)
+        }
+
+        if($newFireBall.offset().left <= 0 || ($newFireBall.offset().left >= window.innerWidth - $newFireBall.width())) {
+            $newFireBall.data('velocity-left', $newFireBall.data('velocity-left') * -1)
+        }
+
+// speed and direction of the fireball
+        $newFireBall.css({
+            top: "+=" + $newFireBall.data('velocity-top'),
+            left: "+=" + $newFireBall.data('velocity-left'),
+        })
+    }, 50)
+    
     $body.append($newFireBall)
 }
 
@@ -96,23 +125,32 @@ function generateStar() {
 
     $body.append($newStar)
     
-// remove star after 10 sec after its generated
+// remove star 7 sec after its generated
      setTimeout(function() {
          $newStar.remove();
      }, 10000);
  }
 
- // generate star every 30 sec
+ // generate star every 26.5 sec
  setInterval(function() {
     generateStar()
-}, 30000);
+}, 27500);
 
-// generate fireball every 3 sec
+// generate fireball every 2.65 sec
 setInterval(function() {
     shootFireBall()
-}, 3000);
+}, 2750);
+
+
+// create timer
+
+// var start = new Date;
+
+// setInterval(function() {
+//     $('.timer').text((new Date - start) / 1000 + " Seconds");
+// }, 1000);
 
 // activate functions at the begining of the game
-enableFireballs()
-startMovingBoss()
-enableBossEffect()
+  enableFireballs()
+  startMovingBoss()
+  enableBossEffect()
