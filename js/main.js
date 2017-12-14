@@ -1,5 +1,8 @@
 var $body = $('body')
-
+var players = [{name: "mario", score: 0}, {name: "luigi", score: 0}]
+var game = {
+    currentPlayer: players[0]
+}
 // creates boss
 function startMovingBoss() {
     var $newBoss = $('<div>')
@@ -11,15 +14,15 @@ function startMovingBoss() {
         left: randomLeft,
     })
 
-// animate to move the boss around
-function moveBoss(boss) {
-    boss.animate({
-        top: Math.floor(Math.random() * (window.innerHeight - 150)),
-        left: Math.floor(Math.random() * (window.innerWidth - 150)),
-    }, 2000, function() {
-        moveBoss(boss)
-})
-}
+    // animate to move the boss around
+    function moveBoss(boss) {
+        boss.animate({
+            top: Math.floor(Math.random() * (window.innerHeight - 150)),
+            left: Math.floor(Math.random() * (window.innerWidth - 150)),
+            }, 2000, function() {
+                moveBoss(boss)
+        })
+    }
     // append boss div to body
     $body.append($newBoss)
     moveBoss($newBoss)
@@ -29,6 +32,7 @@ function moveBoss(boss) {
 // fireball effect
 function enableFireballs() {
     $('body').on('mouseenter', '.fireball', function() {
+        dieSound.play()
         console.log("Ouch")
     })
 }
@@ -41,7 +45,14 @@ function disableFireballs() {
 // boss effect
 function enableBossEffect() {
     $('body').on('mouseenter', '.boss', function() {
+        dieSound.play()
         console.log("Ouch")
+        game.currentPlayer.score = Number($('#timer-value').text())
+        // check if the currentPlayer is players[0] then we change to the next player and
+        // we delete all the balls and boss from the dom and we stop the clock and stop everything
+        //and then start the game again
+        //
+        // else if the currentPlayer is players[1] it means it's game over
     })
 }
 
@@ -52,6 +63,7 @@ function disableBossEffect() {
 
 // what happens after you get star
     $('body').on('mouseenter', '.star', function() {
+    starSound.play()
     disableFireballs()
     disableBossEffect()
     setTimeout(function() {
@@ -141,27 +153,40 @@ function generateStar() {
 // start game button
 var $startbtn = $('.startbtn')
 
-    $startbtn.on('click', function() {
-        enableFireballs()
-        startMovingBoss()
-        enableBossEffect()
+$startbtn.on('click', startGame)
+
+function startGame() {
+    $body.css('cursor', 'url(./pictures/mariosmall.png), auto')
+    startSound.play()
+    enableFireballs()
+    startMovingBoss()
+    enableBossEffect()
 // generate fireball every 2.7 sec
-        setInterval(function() {
-            shootFireBall()
-        }, 2700)
+    setInterval(function() {
+        fireBallSound.play()
+        shootFireBall()
+    }, 2700)
 // generate start every 27 sec
-        setInterval(function() {
-            generateStar()
-        }, 27000)
-        $startbtn.remove()
+    setInterval(function() {
+        generateStar()
+    }, 27000)
+    $startbtn.remove()
 // start time
-        var start = new Date;
-        
-        setInterval(function() {
-            var newTime = Math.round((new Date - start) / 1000)
-            $('.timer').text("Time: " + newTime);
-        }, 1000)
-    })
+    $('#timer-label').text('Time: ')
+    var start = new Date;
+    
+    setInterval(function() {
+        var newTime = Math.round((new Date - start) / 1000)
+        $('#timer-value').text(newTime);
+    }, 1000)
+}
+
+// all sound effects
+var dieSound = new Audio("./soundeffects/die.wav")
+var starSound = new Audio("./soundeffects/stareffectshort.mp3")
+var fireBallSound = new Audio("./soundeffects/fireball.wav")
+var startSound = new Audio("./soundeffects/letsgomario.wav")
+var backgroundMusic = new Audio("./soundeffects/castle.mp3")
 
 //activate functions at the begining of the game
 //   enableFireballs()
