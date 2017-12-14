@@ -151,11 +151,12 @@ setInterval(function() {
 
 // create timer
 
-// var start = new Date;
+var start = new Date;
 
-// setInterval(function() {
-//     $('.timer').text((new Date - start) / 1000 + " Seconds");
-// }, 1000);
+setInterval(function() {
+    var newTime = Math.round((new Date - start) / 1000)
+    $('.timer').text("Time: " + newTime + " Seconds");
+}, 1000);
 
 // activate functions at the begining of the game
   enableFireballs()

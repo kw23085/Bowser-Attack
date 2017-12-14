@@ -28,3 +28,7 @@
 .background {
     background: url('../pictures/levelbackgroundsmall.png')
 }
+
+.timer {
+    color: white;
+}
