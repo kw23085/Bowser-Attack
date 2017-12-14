@@ -51,7 +51,7 @@ function disableBossEffect() {
 }
 
 // what happens after you get star
-$('body').on('mouseenter', '.star', function() {
+    $('body').on('mouseenter', '.star', function() {
     disableFireballs()
     disableBossEffect()
     setTimeout(function() {
@@ -136,10 +136,10 @@ function generateStar() {
      setTimeout(function() {
          $newStar.remove();
      }, 10000);
- }
+}
 
- // generate star every 27 sec
- setInterval(function() {
+// generate star every 27 sec
+setInterval(function() {
     generateStar()
 }, 27000);
 
