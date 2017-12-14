@@ -150,7 +150,6 @@ setInterval(function() {
 
 
 // create timer
-
 var start = new Date;
 
 setInterval(function() {
