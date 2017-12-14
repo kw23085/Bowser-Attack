@@ -1,12 +1,12 @@
 # **BOWSER ATTACK**
 ---
-Bowser has returned again!!! While Mario and Luigi was throwing the biggest party in the Mushroom Land, Bowser came and crashed the party becasue he was not invited. Bowser came down form the roof soooo hard that Bowser went through the floor and sent Mario and Luigi both down to Bowser's underground castle. Can Mario and Luigi survive Bowsers attack and return to their epic mushroom party?
+Bowser has returned again!!! While Mario and Luigi was throwing the biggest party in the Mushroom Land, Bowser came and crashed the party becasue he was not invited. Bowser came down from the roof soooo hard that Bowser went through the floor and sent Mario and Luigi both down to Bowser's underground castle. Can Mario and Luigi survive Bowsers attack and return to their epic mushroom party?
 
 ![](./pictures/titlepage.gif)
 
-Player 1(Mario) and 2(Luigi) will play at the same time. Bowser will move around on the screen and randomly shoots bouncing fire ballz to hurt Mario and Luigi becasue he is mad. Try to avoid Bowsers ballz as long as you can and survive the attack!
+Player 1(Mario) and 2(Luigi) will take turn to play the game. Bowser will move around on the screen and randomly shoots bouncing fire ballz to hurt Mario and Luigi becasue he is mad. Try to avoid Bowsers ballz as long as you can and survive the attack!
 
-Items will appear randomly on the map. Move your character over it to get the effect of the item.
+Star Power(makes your invisible for 10 sec) will appear randomly on the map. Move your character over it to get the effect of the star.
 
 Play Bowser Attack [HERE]()
 
