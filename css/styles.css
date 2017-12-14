@@ -17,10 +17,18 @@
 }
 
 .boss {
-    width: 150px;
-    height: 150px;
+    width: 220px;
+    height: 220px;
     border-radius: 100px;
     position: absolute;
     background: red;
     background: url('../pictures/bowsersmall.gif');
+}
+
+.background {
+    background: url('../pictures/levelbackgroundsmall.png')
+}
+
+.timer {
+    color: white;
 }

@@ -33,6 +33,11 @@ function enableFireballs() {
     })
 }
 
+// turn off fireball effect
+function disableFireballs() {
+    $('body').off('mouseenter', '.fireball')
+}
+
 // boss effect
 function enableBossEffect() {
     $('body').on('mouseenter', '.boss', function() {
@@ -40,16 +45,18 @@ function enableBossEffect() {
     })
 }
 
-// turn off fireball effect
-function disableFireballs() {
-    $('body').off('mouseenter', '.fireball')
+// turn off boss effect
+function disableBossEffect() {
+    $('body').off('mouseenter', '.boss')
 }
 
 // what happens after you get star
 $('body').on('mouseenter', '.star', function() {
     disableFireballs()
+    disableBossEffect()
     setTimeout(function() {
         enableFireballs()
+        enableBossEffect()
     }, 10000)
     $(this).remove()
 })
@@ -125,30 +132,30 @@ function generateStar() {
 
     $body.append($newStar)
     
-// remove star 7 sec after its generated
+// remove star 10 sec after its generated
      setTimeout(function() {
          $newStar.remove();
      }, 10000);
  }
 
- // generate star every 26.5 sec
+ // generate star every 27 sec
  setInterval(function() {
     generateStar()
-}, 27500);
+}, 27000);
 
-// generate fireball every 2.65 sec
+// generate fireball every 2.7 sec
 setInterval(function() {
     shootFireBall()
-}, 2750);
+}, 2700);
 
 
 // create timer
+var start = new Date;
 
-// var start = new Date;
-
-// setInterval(function() {
-//     $('.timer').text((new Date - start) / 1000 + " Seconds");
-// }, 1000);
+setInterval(function() {
+    var newTime = Math.round((new Date - start) / 1000)
+    $('.timer').text("Time: " + newTime + " Seconds");
+}, 1000);
 
 // activate functions at the begining of the game
   enableFireballs()
