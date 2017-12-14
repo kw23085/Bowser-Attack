@@ -61,7 +61,7 @@ function disableBossEffect() {
     $(this).remove()
 })
 
-// decides if the fireball should increase or decrease to or left
+// decides if the fireball should increase or decrease to right or left
 function randomDirection() {
     if(Math.round(Math.random())) {
         return 1
@@ -133,31 +133,37 @@ function generateStar() {
     $body.append($newStar)
     
 // remove star 10 sec after its generated
-     setTimeout(function() {
-         $newStar.remove();
-     }, 10000);
+    setTimeout(function() {
+        $newStar.remove();
+    }, 10000);
 }
 
-// generate star every 27 sec
-setInterval(function() {
-    generateStar()
-}, 27000);
+// start game button
+var $startbtn = $('.startbtn')
 
+    $startbtn.on('click', function() {
+        enableFireballs()
+        startMovingBoss()
+        enableBossEffect()
 // generate fireball every 2.7 sec
-setInterval(function() {
-    shootFireBall()
-}, 2700);
+        setInterval(function() {
+            shootFireBall()
+        }, 2700)
+// generate start every 27 sec
+        setInterval(function() {
+            generateStar()
+        }, 27000)
+        $startbtn.remove()
+// start time
+        var start = new Date;
+        
+        setInterval(function() {
+            var newTime = Math.round((new Date - start) / 1000)
+            $('.timer').text("Time: " + newTime);
+        }, 1000)
+    })
 
-
-// create timer
-var start = new Date;
-
-setInterval(function() {
-    var newTime = Math.round((new Date - start) / 1000)
-    $('.timer').text("Time: " + newTime + " Seconds");
-}, 1000);
-
-// activate functions at the begining of the game
-  enableFireballs()
-  startMovingBoss()
-  enableBossEffect()
+//activate functions at the begining of the game
+//   enableFireballs()
+//   startMovingBoss()
+//   enableBossEffect()
