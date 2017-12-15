@@ -49,7 +49,7 @@ function enableFireballs() {
         clearFireBall()
         clearStar()
         $('#timer-value').text(0);
-        var $startAgainBtn = $('<button>Start Player 2</button>')
+        var $startAgainBtn = $('<button>Luigis turn!</button>')
         $startAgainBtn.addClass('startagainbtn')
         // check if the currentPlayer is players[0] then we change to the next player and
         // we delete all the balls and boss from the dom and we stop the clock and stop everything
@@ -78,7 +78,7 @@ function enableBossEffect() {
         clearFireBall()
         clearStar()
         $('#timer-value').text(0);
-        var $startAgainBtn = $('<button>Start Player 2</button>')
+        var $startAgainBtn = $('<button>Luigis turn!</button>')
         $startAgainBtn.addClass('startagainbtn')
         // check if the currentPlayer is players[0] then we change to the next player and
         // we delete all the balls and boss from the dom and we stop the clock and stop everything
@@ -98,12 +98,15 @@ function disableBossEffect() {
 
 // what happens after you get star
     $('body').on('mouseenter', '.star', function() {
+    wooHoo.play()
     starSound.play()
+    backgroundMusic.pause()
     disableFireballs()
     disableBossEffect()
     setTimeout(function() {
         enableFireballs()
         enableBossEffect()
+        backgroundMusic.play()
     }, 10000)
     $(this).remove()
 })
@@ -273,7 +276,7 @@ var fireBallSound = new Audio("./soundeffects/fireball.wav")
 var startSound = new Audio("./soundeffects/letsgomario.wav")
 var backgroundMusic = new Audio("./soundeffects/castle.mp3")
 var startAgainBtn = new Audio("./soundeffects/luigiohno.wav")
-
+var wooHoo = new Audio("./soundeffects/woohoomario.wav")
 //activate functions at the begining of the game
 //   enableFireballs()
 //   startMovingBoss()
