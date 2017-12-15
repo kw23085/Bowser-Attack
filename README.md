@@ -1,6 +1,6 @@
 # **BOWSER ATTACK**
 ---
-Bowser has returned again!!! While Mario and Luigi was throwing the most epic party in Mushroom Land, Bowser came and crashed the party becasue he was not invited. Bowser came down from the roof soooo hard that he went through the floor and sent Mario and Luigi both down to Bowser's underground castle. Can Mario and Luigi survive Bowsers attack and return to their epic mushroom party?
+Bowser has returned again!!! While Mario and Luigi was throwing the most epic party in Mushroom Land ever, Bowser came and crashed the party becasue he was not invited. Bowser came down from the roof soooo hard that he went through the floor and sent Mario and Luigi both down to Bowser's underground castle. Can Mario and Luigi survive Bowsers attack and return to their epic mushroom party?
 
 ![](./pictures/titlepagebowsersmall.png) ![](./pictures/titlepagesmall.gif)
 
