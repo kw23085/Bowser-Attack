@@ -8,7 +8,7 @@ Player 1(Mario) and 2(Luigi) will take turn to play the game. Bowser will move a
 
 Star Power(makes you invisible for 10 sec) will appear randomly on the map. Move your character over it to get the effect of the star.
 
-Play Bowser Attack [HERE]()
+Play Bowser Attack [HERE](https://kw23085.github.io/Bowser-Attack/)
 
 ---
 # Development & Technologies
