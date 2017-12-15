@@ -154,10 +154,13 @@ function generateStar() {
 var $startbtn = $('.startbtn')
 
 $startbtn.on('click', startGame)
+$startbtn.on('mouseenter', function() {
+    startSound.play()
+})
 
 function startGame() {
     $body.css('cursor', 'url(./pictures/mariosmall.png), auto')
-    startSound.play()
+    backgroundMusic.play()
     enableFireballs()
     startMovingBoss()
     enableBossEffect()

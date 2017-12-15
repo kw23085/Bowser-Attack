@@ -6,7 +6,7 @@ Bowser has returned again!!! While Mario and Luigi was throwing the biggest part
 
 Player 1(Mario) and 2(Luigi) will take turn to play the game. Bowser will move around on the screen and randomly shoots bouncing fire ballz to hurt Mario and Luigi becasue he is mad. Try to avoid Bowsers ballz as long as you can and survive the attack!
 
-Star Power(makes your invisible for 10 sec) will appear randomly on the map. Move your character over it to get the effect of the star.
+Star Power(makes you invisible for 10 sec) will appear randomly on the map. Move your character over it to get the effect of the star.
 
 Play Bowser Attack [HERE]()
 
