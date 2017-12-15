@@ -3,6 +3,11 @@ var players = [{name: "mario", score: 0}, {name: "luigi", score: 0}]
 var game = {
     currentPlayer: players[0]
 }
+var timeCounter
+var newTime = 0
+var fireBallShooter
+var start = new Date;
+
 // creates boss
 function startMovingBoss() {
     var $newBoss = $('<div>')
@@ -34,6 +39,24 @@ function enableFireballs() {
     $('body').on('mouseenter', '.fireball', function() {
         dieSound.play()
         console.log("Ouch")
+        backgroundMusic.pause()
+        dieSound.play()
+        alert('you died your score was ' + $('#timer-value').text())
+        $('.fireball').remove()
+        $('.boss').remove()
+        game.currentPlayer.score = Number($('#timer-value').text())
+        clearTime()
+        clearFireBall()
+        clearStar()
+        $('#timer-value').text(0);
+        var $startAgainBtn = $('<button>Start Player 2</button>')
+        $startAgainBtn.addClass('startagainbtn')
+        // check if the currentPlayer is players[0] then we change to the next player and
+        // we delete all the balls and boss from the dom and we stop the clock and stop everything
+        //and then start the game again
+        //
+        // else if the currentPlayer is players[1] it means it's game over
+        $body.append($startAgainBtn)
     })
 }
 
@@ -45,16 +68,28 @@ function disableFireballs() {
 // boss effect
 function enableBossEffect() {
     $('body').on('mouseenter', '.boss', function() {
+        backgroundMusic.pause()
         dieSound.play()
-        console.log("Ouch")
+        alert('you died your score was ' + $('#timer-value').text())
+        $('.fireball').remove()
+        $('.boss').remove()
         game.currentPlayer.score = Number($('#timer-value').text())
+        clearTime()
+        clearFireBall()
+        clearStar()
+        $('#timer-value').text(0);
+        var $startAgainBtn = $('<button>Start Player 2</button>')
+        $startAgainBtn.addClass('startagainbtn')
         // check if the currentPlayer is players[0] then we change to the next player and
         // we delete all the balls and boss from the dom and we stop the clock and stop everything
         //and then start the game again
         //
         // else if the currentPlayer is players[1] it means it's game over
+        $body.append($startAgainBtn)
     })
 }
+
+
 
 // turn off boss effect
 function disableBossEffect() {
@@ -164,24 +199,63 @@ function startGame() {
     enableFireballs()
     startMovingBoss()
     enableBossEffect()
-// generate fireball every 2.7 sec
-    setInterval(function() {
-        fireBallSound.play()
-        shootFireBall()
-    }, 2700)
-// generate start every 27 sec
-    setInterval(function() {
+    
+// start intervals
+    myTimer()
+    fireballTimer()
+    starTimer()
+}
+
+function myTimer() {
+    timeCounter = setInterval(function() {
+        newTime += 1
+        // newTime = Math.round((new Date - start) / 1000)
+        $('#timer-label').text('Time: ')        
+        $('#timer-value').text(newTime);
+    }, 1000)
+}
+
+function myTimer2() {
+    timeCounter = setInterval(function() {
+        newTime += 1
+        $('#timer-label').text('Time: ')        
+        $('#timer-value').text(newTime);
+    }, 1000)
+}
+
+function starTimer() {
+    starGenerator = setInterval(function() {
         generateStar()
     }, 27000)
     $startbtn.remove()
-// start time
-    $('#timer-label').text('Time: ')
-    var start = new Date;
-    
-    setInterval(function() {
-        var newTime = Math.round((new Date - start) / 1000)
-        $('#timer-value').text(newTime);
-    }, 1000)
+}
+
+function fireballTimer() {
+    fireballShooter = setInterval(function() {
+        fireBallSound.play()
+        shootFireBall()
+    }, 2700)
+}
+
+function clearTime() {
+    clearInterval(timeCounter)
+    timeCounter = 0
+    newTime = 0
+}
+
+function clearFireBall() {
+    clearInterval(fireballShooter)
+}
+
+function clearStar() {
+    clearInterval(starGenerator)
+}
+
+$('body').on('click', '.startagainbtn', startAgain)
+
+function startAgain() {
+    startGame()
+    timeCounter = 0  
 }
 
 // all sound effects
