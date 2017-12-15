@@ -215,6 +215,7 @@ function myTimer() {
     }, 1000)
 }
 
+// timer
 function myTimer2() {
     timeCounter = setInterval(function() {
         newTime += 1
@@ -222,7 +223,7 @@ function myTimer2() {
         $('#timer-value').text(newTime);
     }, 1000)
 }
-
+//clear intervals
 function starTimer() {
     starGenerator = setInterval(function() {
         generateStar()
@@ -250,8 +251,15 @@ function clearFireBall() {
 function clearStar() {
     clearInterval(starGenerator)
 }
-
-$('body').on('click', '.startagainbtn', startAgain)
+// start again button
+$('body').on('click', '.startagainbtn', function() {
+    startAgain()
+    $body.css('cursor', 'url(./pictures/luigismall.png), auto')
+    $('.startagainbtn').remove()
+})
+$('body').on('mouseenter', '.startagainbtn', function() {
+    startAgainBtn.play()
+})
 
 function startAgain() {
     startGame()
@@ -264,6 +272,7 @@ var starSound = new Audio("./soundeffects/stareffectshort.mp3")
 var fireBallSound = new Audio("./soundeffects/fireball.wav")
 var startSound = new Audio("./soundeffects/letsgomario.wav")
 var backgroundMusic = new Audio("./soundeffects/castle.mp3")
+var startAgainBtn = new Audio("./soundeffects/luigiohno.wav")
 
 //activate functions at the begining of the game
 //   enableFireballs()
